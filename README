@@ -1,1 +1,132 @@
+FractalSIM is a Python based software package, a multi-scenario whole genome-based medical population genetics simulation framework.
+FractalSIM, designed under a resampling simulation approach mimics various scenarios of population genetic diversity,
+genomic variation affecting diseases and DNA sequence patterns of admixed and/or homogeneous populations, particularly those under natural selection models.
+
+Author: Jacquiline W. Mugo
+2016
+
+################################################################################################################################################################
+
+USAGE: python FractalSIM.py <parameter_file.txt>
+
+parameter_file.txt: list of main parameters passed to the FractalSIM.py
+
+
+PARAMETERS DESCRIPTION:
+-----------------------
+
+infolder:/PATH/INFOLDER/                        - path to input files' folder
+
+
+main options of simulation
+--------------------------
+
+homogenous : YES or NO                          - YES for population bottleneck simulation
+admixture : YES or NO                           - YES for either single-point or multi-point admixture
+disease : YES or NO                             - YES to include disease models (null or causal) in either homogeneous or admixture
+                                                  (pre or post) simulation
+selection: YES or NO                            - YES to include selection in either homogeneous or admixture (pre or post) simulation
+
+
+Inputs files common to both the  homogeneous and admixture simulation
+---------------------------------------------------------------------
+
+Fsnp : <pop.snps>                               - reference haplotypes for a bottleneck simulation
+Fgenetic_map : <genetic_map.txt>                - contains 3 columns, SNPs position, genetic map, and recombination rate
+Fitness: <fitness_file.txt>                     - contains 3 columns, position of SNPs under selection (position), fitness corresponding to
+                                                  carrying 1 copy of minor allele (s1) and 2 copies of the minor allele (s2)
+                                                  Only read if selection is YES (above)
+inputs specific to bottleck simulation
+--------------------------------------
+
+Fhap : <pop.haps>                               - reference haplotypes for a bottleneck simulation
+samples_to_add : e.g 1000                       - number of individuals to simulate
+
+
+Options specific to admixture simulation
+----------------------------------------
+
+pre_admixture_simulation : YES or NO            - YES to mimic isolated growth before admixture event.
+pre_admix_option_file : <pre_admix_file.txt>    - If above option is YES, the file includes simulation options for each ancestry population
+                                                  with the below options (create entry for each paprental population):
+
+                                                  parental_pop_label : pop1                     - speicific ancestry label
+                                                  simulation_size : e.g 1000                    - individual to simulate
+                                                  pre_admixture_selection : YES or NO           - YES to include selection in the simulation
+                                                  fitness_file : fitness_file.txt               - fitness information file, specific to this
+                                                                                                  population
+                                                  pre_admixture_disease : YES or NO             - YES to include disease simulation
+                                                  null_model : YES or NO                        - YES to simulate a disease null model
+                                                  causal_model : YES or NO                      - YES to simulate a causal disease model
+                                                  no_of_cases : e.g 1000                        - case individuals to simulate
+                                                  no_of_controls : e.g 1000                     - control individuals to simulate
+                                                  disease_SNPs_position : 14870204,24607555     - Risk SNP positions
+                                                  hete_homozygous_risk : 9.2,10.0,10.44,12.68   - Corresponding relative risk in the form of
+                                                                                                  heterozygote,homozygote for each risk SNP
+                                                                                                  and in order. e.g
+
+                                                                                                position        heterozygote,homozygote
+                                                                                                698293          9.2,10.0
+                                                                                                293617          10.44,12.68
+
+
+
+admix_single_point : YES or NO                  - YES to simulation just a single admixture event
+admix_multi_point : YES  or NO                  - YES to simulation multiple points of admixture in history.
+multi_point_paraFile : <multi_point.txt>        - multi-point parameters file, includes the ancestry proportions at each point of admixture
+
+                                                        1000    admixed         JPT     MEX     CHB
+                                                        10      0.0             0.4     0.0     0.6
+                                                        20      0.4             0.0     0.6     0.0
+
+                                                        line 1: 1000 - samples to simulate , admixed,pop1,pop2,pop3 - population labels
+                                                        line 2: 1st admixture instance;
+                                                                10 - generation, 0.0,0.4,0.0,0.6 - corresponding ancestry proportions
+                                                                                                   (should sum to 1)
+                                                        line 3: 2nd admixture instance;
+                                                                20 - generation, 0.4,0.0,0.6,0.0 - corresponding ancestry proportions
+                                                                                                   (should sum to 1)
+                                                        line 4: ...
+
+
+post_admix_selection : YES or NO                - YES to include post-admixture selection in the simulation
+post_admix_disease : YES or NO                  - YES to include post-admixture disease in the simulation
+post_admix_sim_sample_size : e.g 1000           - The number of individuals to simulation in the post-admixture phase
+
+parental_files:<pop1.haps>,<pop2.haps>,...      - Parental populations file names
+anc_label : pop1,pop2,...                       - The parental population labels, maintain order with the parental files above
+
+
+parameters specific to  single-point admixture simulation
+---------------------------------------------------------
+
+anc_proportions : e.g 0.30,0.20,0.50            - The ancestry contribution of each parental population, should sum to 1, and follow order of
+                                                  the population labels
+samples_to_simulate : e.g 500                   - Individuals to simulate in the single-point admixture event should be less than half
+                                                  the parental population sample size.
+generations_to_simulate : e.g 20                - The generations to simulate in the single-point admixture event.
+
+
+Disease options only to be specified in disease simulation in homogeneous or in the post-admixture simulation
+-------------------------------------------------------------------------------------------------------------
+
+null_model : YES or NO                          - YES for a null disease model simulation
+causal_model : YES or NO                        - YES for a causal disease model simulation
+
+no_of_cases : e.g 1000                          - Number of case individuals to simulate
+no_of_controls : e.g 1000                       - Number of control individuals to simulate
+
+disease_SNPs_position : 14870204,24607555       - Risk SNPs positions
+hete_homozygote_risk : 9.2,10.0,10.44,12.68     - Corresponding relative risk in the form of heterozygote,homozygote for each risk SNP and
+                                                  in order. e.g
+
+                                                  position      heterozygote,homozygote
+                                                  148702204     9.2,10.0
+                                                  240607555     10.44,12.68
+
+Output folder name, where all the results are stored
+----------------------------------------------------
+outfolder: OUTFOLDER                            - Do not include the path, just the name.
+
+
 
