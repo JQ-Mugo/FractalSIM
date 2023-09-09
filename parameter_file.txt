@@ -1,0 +1,83 @@
+#***************************************************************************************************
+#				PARAMETER LIST
+#  			(Order of entries should be maintained)
+#****************************************************************************************************
+
+#---------------------------------------------------------------------------------------
+# Input folder (specify full path, should contain all input files) 
+#---------------------------------------------------------------------------------------
+infolder:example/
+
+#---------------------------------------------------------------------------------------
+# Simulation Options
+#---------------------------------------------------------------------------------------
+homogenous:NO
+admixture:YES
+disease:NO
+selection:YES
+
+
+#--------------------------------------------------------------------------------------
+# SNPs and Genetic map file : Compulsory for any simulation options
+#--------------------------------------------------------------------------------------
+Fsnp:pop.snps
+Fgenetic_map:genetic_map.txt
+Ffitness:fitness_file.txt
+
+#--------------------------------------------------------------------------------------
+# Homogeneous simulation options
+#--------------------------------------------------------------------------------------
+Fhap:pop1.haps
+samples_to_add:200
+
+#---------------------------------------------------------------------------------------
+# Admixture simulation  options for both single-point & multi-point 
+# (maintain the order of parameter entry)
+#---------------------------------------------------------------------------------------
+pre_admixture_simulation:YES
+pre_admix_option_file:pre_admix_file.txt
+
+admix_single_point:NO
+admix_multi_point:YES
+multi_point_paraFile:admix.txt
+
+post_admix_selection:YES
+post_admix_disease:YES
+post_admix_sim_sample_size:20
+
+parental_files:pop1.haps,pop2.haps,pop3.haps
+anc_label:pop1,pop2,pop3
+
+
+
+#---------------------------------------------------------------------------------------
+# Single point admixture simulation options
+#---------------------------------------------------------------------------------------
+anc_proportions:0.30,0.20,0.50
+samples_to_simulate:5
+generations_to_simulate:100
+
+
+
+#--------------------------------------------------------------------------------------
+# Disease options for Homogeneous & post-admixture selection simulation 
+# (parameter order should be maintained)
+#--------------------------------------------------------------------------------------
+null_model:NO
+causal_model:YES
+
+no_of_cases:5
+no_of_controls:5
+
+disease_SNPs_position:14870204,24607555
+hete_homozygote_risk:9.2,10.0,10.44,12.68
+
+
+#-----------------------------------------------------------------------------------------
+#Output folder
+#-----------------------------------------------------------------------------------------
+outfolder:OUTPUT/
+
+
+
+
