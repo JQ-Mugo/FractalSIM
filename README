@@ -1,6 +1,5 @@
-FractalSIM is a Python based software package, a multi-scenario whole genome-based medical population genetics simulation framework.
-FractalSIM, designed under a resampling simulation approach mimics various scenarios of population genetic diversity,
-genomic variation affecting diseases and DNA sequence patterns of admixed and/or homogeneous populations, particularly those under natural selection models.
+FractalSIM is a Python based software package, a multi-scenario genome-wide medical population genetics simulation framework, designed under a resampling simulation approach. FractalSIM mimics various 
+scenarios of population genetic diversity, genomic variation affecting diseases and DNA sequence patterns of admixed and/or homogeneous populations, particularly those under natural selection models.
 
 Author: Jacquiline W. Mugo
 2016
